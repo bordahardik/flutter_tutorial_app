@@ -101,7 +101,7 @@ class ListViewDemo extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 350,
+            height: 250,
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(),
               shrinkWrap: true,
@@ -148,6 +148,21 @@ class ListViewDemo extends StatelessWidget {
                       Text('Soup')
                     ],
                   ),
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.9),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {},
+                  child: Card(),
                 );
               },
             ),
