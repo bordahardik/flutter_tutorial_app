@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/firebase/firebase_database_screen.dart';
-import 'package:flutter_app/view/onboarding_screen.dart';
-import 'package:flutter_app/view/splash_screen.dart';
+import 'package:flutter_app/view/listview_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // theme: ThemeData(primarySwatch: Colors.green),
-      home: FirebaseDatabaseScreen(),
+
+      home: ListViewDemo(),
     );
   }
 }
