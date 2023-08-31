@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/firebase/phone_number_screen.dart';
 
 class FirebaseAuthScreen extends StatefulWidget {
   const FirebaseAuthScreen({Key? key}) : super(key: key);
@@ -130,6 +131,17 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                       await auth.signOut();
                     },
                     child: const Text("LogOut")),
+                ElevatedButton(
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PhoneNumberScreen(),
+                          ));
+                    },
+                    child: const Text("Phone OTP")),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/firebase/firebase_auth_screen.dart';
 import 'package:flutter_app/view/listview_widget.dart';
 
 void main() async {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // theme: ThemeData(primarySwatch: Colors.green),
 
-      home: ListViewDemo(),
+      home: FirebaseAuthScreen(),
     );
   }
 }
