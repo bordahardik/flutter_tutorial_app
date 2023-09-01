@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/preference_utils.dart';
 import 'package:flutter_app/view/firebase/phone_number_screen.dart';
+import 'package:flutter_app/view/home_screen.dart';
 
 class FirebaseAuthScreen extends StatefulWidget {
   const FirebaseAuthScreen({Key? key}) : super(key: key);
@@ -14,11 +16,19 @@ class FirebaseAuthScreen extends StatefulWidget {
 class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
   final formGlobalKey = GlobalKey<FormState>();
 
+  final userController = TextEditingController();
   final emailController = TextEditingController();
-
   final passController = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  @override
+  void dispose() {
+    userController.dispose();
+    emailController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +51,19 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                TextFormField(
+                  controller: userController,
+                  decoration: const InputDecoration(hintText: "Username"),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return '*';
+                    } else {
+                      return null;
+                    }
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(hintText: "Email"),
@@ -115,7 +138,7 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                         });
                       }
                     },
-                    child: const Text("LOGIN")),
+                    child: const Text("Firebase Auth LOGIN")),
                 const SizedBox(height: 20),
                 ElevatedButton(
                     onPressed: () {
@@ -142,6 +165,20 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                           ));
                     },
                     child: const Text("Phone OTP")),
+                ElevatedButton(
+                    onPressed: () async {
+                      FocusScope.of(context).unfocus();
+
+                      await PreferenceUtils.setIsLogin(true);
+                      await PreferenceUtils.setUserName(userController.text);
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ));
+                    },
+                    child: const Text("Login")),
               ],
             ),
           ),

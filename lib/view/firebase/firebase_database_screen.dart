@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,6 +29,7 @@ class _FirebaseDatabaseScreenState extends State<FirebaseDatabaseScreen> {
 
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('User');
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -123,8 +125,9 @@ class _FirebaseDatabaseScreenState extends State<FirebaseDatabaseScreen> {
                       log('===REQ BODY===$reqBody');
 
                       userCollection
-                          .add(reqBody)
-                          .then((value) => log('===ADD===$value'))
+                          .doc(auth.currentUser!.uid)
+                          .set(reqBody)
+                          .then((value) => log('===ADD==='))
                           .catchError((e) {
                         log('===ADD ERROR CODE===${e.code}');
                         log('===ADD ERROR MESSAGE===${e.message}');
