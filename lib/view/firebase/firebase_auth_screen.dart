@@ -171,7 +171,6 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
 
                       await PreferenceUtils.setIsLogin(true);
                       await PreferenceUtils.setUserName(userController.text);
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
