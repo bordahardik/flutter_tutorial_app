@@ -32,6 +32,10 @@ dependencies:
   #shared preference
   get_storage: ^2.1.1
 
+  #bottom
+  flashy_tab_bar2: ^0.0.6
+  convex_bottom_bar: ^3.2.0
+
 
 dev_dependencies:
   flutter_test:
