@@ -27,7 +27,7 @@ class _FruitScreenState extends State<FruitScreen> {
                     bottom: Radius.circular(40),
                   ),
                 ),
-                margin: const EdgeInsets.only(bottom: 70),
+                // margin: const EdgeInsets.only(bottom: 70),
                 child: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -43,7 +43,7 @@ class _FruitScreenState extends State<FruitScreen> {
                 ),
               ),
               Positioned(
-                bottom: 0,
+                bottom: -70,
                 right: 0,
                 left: 0,
                 child: SingleChildScrollView(
@@ -92,6 +92,9 @@ class _FruitScreenState extends State<FruitScreen> {
               ),
             ],
           ),
+          const SizedBox(height: 20),
+          const SizedBox(height: 20),
+          const SizedBox(height: 20),
           const SizedBox(height: 20),
           labelWidget(title: 'Popular Foodstuffs'),
         ],
